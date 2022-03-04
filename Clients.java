@@ -4,17 +4,20 @@ public class Clients{
     private String name;
     private String surname;
     private String ClientID;
+    private String password;
     private int money;
 
-    public Clients(String _name, String _surname, String _ClientID, int _money){
+    public Clients(String _name, String _surname, String _ClientID, int _money, String _password){
         this.name = _name;
         this.surname = _surname;
         this.ClientID = _ClientID;
         this.money = _money;
+        this.password = _password;
     }
 
     public static String toFile(Clients client){
-        String toFile = client.getName() + ';' + client.getSurname() + ';' + client.getMoney();
+        //ClientID;password;name;surname;money
+        String toFile = client.getClientID() + ';' + client.getPassword() + ';' + client.getName() + ';' + client.getSurname() + ';' + client.getMoney();
         return toFile;
     }
 
@@ -49,4 +52,12 @@ public class Clients{
     public void setMoney(int money) {
         this.money = money;
     }
-}
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+}   
