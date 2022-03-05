@@ -3,7 +3,8 @@ package com.mateo;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
-//import java.util.Arrays;
+import java.util.List;
+import java.util.Arrays;
 
   
 //"/Users/mateuszosinski/Desktop/Java/Projects/src/com/mateo/data.txt"
@@ -26,8 +27,9 @@ public class FileHandling {
     public static void Writer(String path, String toFile){
         try{
             File file = new File(path);
-            System.out.println("Does file exists? FileHandling.Writer() -> " + file.exists());
+            //System.out.println("Does file exists? FileHandling.Writer() -> " + file.exists());
             FileWriter writer = new FileWriter(file.getAbsoluteFile(), true);
+            //System.out.println("I am here FilaHandling.Writer() - > " + toFile);
             writer.write(toFile + "\n");
             writer.close();
         }
@@ -35,7 +37,7 @@ public class FileHandling {
             System.out.println(ex.getMessage());
         }
     }
-    public static void ReaderLogin(String path, String clientID, String password){
+    public static void ReaderLogin(String path, String clientID, String password, boolean state, List <Clients>  clientList){
         try{
             boolean flag = false;
             File file = new File(path);
@@ -47,12 +49,15 @@ public class FileHandling {
                 //System.out.println("FileHandling.ReaderLogin() -> ");
                 //System.out.println(splited[0] + " " + splited[1]);
                 String sClientID = (String)splited[0], sPassoword = splited[1];
-                System.out.println(sClientID + " " + clientID + " " + sPassoword + " " + password);
-                if(clientID == sClientID){
-                    System.out.println("Founded! " + clientID);
+                if(clientID.equals(sClientID)){
+                    System.out.println("Found! " + clientID);
                     flag = true;
-                    if(password == sPassoword){
+                    if(password.equals(sPassoword)){
                         System.out.println("Welcome in the system, " + splited[2].toUpperCase() + splited[3].toUpperCase());
+                        clientList.add(new Clients(splited[2], splited[3], splited[0], Integer.parseInt(splited[4]), splited[1]));
+                    }else{
+                        System.out.println("Given password is not correct. Please, try again.");
+                        System.exit(0);
                     }
                 }
             }
