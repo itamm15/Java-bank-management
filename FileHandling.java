@@ -50,11 +50,12 @@ public class FileHandling {
                 //System.out.println(splited[0] + " " + splited[1]);
                 String sClientID = (String)splited[0], sPassoword = splited[1];
                 if(clientID.equals(sClientID)){
-                    System.out.println("Found! " + clientID);
-                    flag = true;
+                    //System.out.println("Found! " + clientID);
                     if(password.equals(sPassoword)){
-                        System.out.println("Welcome in the system, " + splited[2].toUpperCase() + splited[3].toUpperCase());
-                        clientList.add(new Clients(splited[2], splited[3], splited[0], Integer.parseInt(splited[4]), splited[1]));
+                        flag = true; 
+                        Start.state = true;
+                        System.out.println("Welcome in the system, " + splited[2].toUpperCase() + " " + splited[3].toUpperCase());
+                        clientList.add(new Clients(splited[2], splited[3], splited[0], Double.parseDouble(splited[4]), splited[1]));
                     }else{
                         System.out.println("Given password is not correct. Please, try again.");
                         System.exit(0);
@@ -70,4 +71,20 @@ public class FileHandling {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public final static void clearConsole(){
+        try{
+            final String os = System.getProperty("os.name");
+
+            if(os.contains("Windows")){
+                Runtime.getRuntime().exec("cls");
+            }else{
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch(final Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }

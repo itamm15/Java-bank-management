@@ -38,6 +38,7 @@ public class ClientsService {
         System.out.println("Provide password ");
         password = scanner.nextLine();
         FileHandling.ReaderLogin(path, clientID, password, state, clientList);
+        //System.out.println("state of user " + Start.state + " " + state);
     }
 
     public static void printDataFromList(){
@@ -46,15 +47,24 @@ public class ClientsService {
         //     System.out.println(itr.next());
         // }
         for(int i = 0;i<clientList.size();i++){
-            System.out.println("\nYour name and surname: " + clientList.get(i).getName() + " " + clientList.get(i).getSurname() + ".\nYour bank account status: " +
-                               clientList.get(i).getMoney() + ".\nYour password: " + clientList.get(i).getPassword());
+            System.out.println("\nYour name and surname: " + clientList.get(i).getName().toUpperCase() + " " + clientList.get(i).getSurname().toUpperCase() +
+                               ".\nYour password: " + clientList.get(i).getPassword());
         }
         
     }
-
+    
     public static void printData(Clients client){
         System.out.println(client.getName() + " " + client.getSurname() + " " + client.getMoney() + " " + client.getPassword() + " " + client.getClientID());
     }
+
+    public static void assignToMain(Clients clientM){
+        clientM.setClientID(ClientsService.clientList.get(0).getClientID());
+        clientM.setPassword(ClientsService.clientList.get(0).getPassword());
+        clientM.setName(ClientsService.clientList.get(0).getName());
+        clientM.setSurname(ClientsService.clientList.get(0).getSurname());
+        clientM.setMoney(ClientsService.clientList.get(0).getMoney());
+    }
+
     public static String randomClientID(){
         //33-47 - range of special chars
         Random rand = new Random();
