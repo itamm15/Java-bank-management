@@ -6,8 +6,6 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Arrays;
 
-  
-//"/Users/mateuszosinski/Desktop/Java/Projects/src/com/mateo/data.txt"
 
 public class FileHandling {
     public static void Reader(String path){
@@ -86,5 +84,51 @@ public class FileHandling {
             System.out.println(ex.getMessage());
         }
     }
+
+    //Deleting/replacing old data with new one
+
+    public static void updateData(Clients client){
+        try{
+            final String clientID = client.getClientID();
+            System.out.println("FileHandling.updateData() -> ClientID = " + clientID);
+            final String pathMain = "/Users/mateuszosinski/Desktop/Java/Projects/src/com/mateo/users.txt";
+            final String pathTmp =  "/Users/mateuszosinski/Desktop/Java/Projects/src/com/mateo/data.txt";
+            File file = new File(pathMain);
+            File tmp = new File(pathTmp);
+            FileWriter writerTmp = new FileWriter(tmp, false);        
+            //search of given clientID;
+            //the algorithm is going to take line by line, and it is going to search by first keyword (till it will find ';')
+            //the complexity is linear
+            //however, it just an .txt file, in next project I will operate on mysql services + spring
+            Scanner scannerMain = new Scanner(file);
+            while(scannerMain.hasNext()){
+                String line = scannerMain.nextLine();
+                String[] splitedLine = line.split(";");
+                if(!(splitedLine[0].equals(clientID))){
+                    System.out.println("this is the line -> " + line);
+                    writerTmp.write(line + "\n");
+                }else{
+                    writerTmp.write(Clients.toFile(client) + "\n");
+                }
+            }
+            //Right now data.txt contains updated info
+            //So users.txt MUST be truncated, and info from data.txt needs to be transported
+            FileWriter writerMain = new FileWriter(file, false);
+            writerTmp.close();
+            Scanner scannerTmp = new Scanner(tmp);
+            while(scannerTmp.hasNext()){
+                String line = scannerTmp.next();
+                System.out.println("SCANNER " + line);
+                writerMain.write(line+ "\n");
+            }
+            writerMain.close();
+            scannerTmp.close();
+            scannerMain.close();
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
 }

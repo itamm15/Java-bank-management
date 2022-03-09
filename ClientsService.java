@@ -25,6 +25,7 @@ public class ClientsService {
         System.out.println("Provide password ");
         password = scanner.nextLine();
         Clients client = new Clients(name, surname, ClientID, money, password);
+        System.out.println("Here is your ClientID.\nWe highly encourage you to remember this - it will be needed to login into account. \nClientId = " + ClientID);
         clientList.add(client);
         return client;
     }
