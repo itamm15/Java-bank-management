@@ -30,13 +30,29 @@ public class Clients{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Provide amount to withdraw \n");
         double amountToWithdraw = scanner.nextDouble();
-        System.out.println("Amount before withdrawal " + getMoney());
         if(balance >= amountToWithdraw){
+            System.out.println("Amount before withdrawal " + getMoney());
             setMoney(balance - amountToWithdraw);
             System.out.println("Given amount has been withdrawn = " + amountToWithdraw +
                                ". Your account balance is " + getMoney());
+        }else{
+            System.out.println("Insufficient funds.");
         }
         
+    }
+
+    public void depositMoney(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please, provide the amount to deposit ");
+        double funds = scanner.nextDouble();
+        System.out.println("Account balance before deposit: " + getMoney());
+        setMoney(getMoney() + funds);
+        System.out.println("Account balance after deposit: " + getMoney());
+    }   
+
+    public void userInfo(){
+        System.out.println("Your name and surname: " + getName() + " " + getSurname() +
+                           ".\nYour password: " + getPassword());
     }
 
     public static String toFile(Clients client){

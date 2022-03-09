@@ -52,7 +52,8 @@ public class Start {
                 String userDecision = scanner.nextLine();
                 switch(userDecision){
                 case "1":{
-                    clientService.printDataFromList();
+                    //clientService.printDataFromList();
+                    clientM.userInfo();
                     break;
                 }
                 case "2":{
@@ -64,12 +65,18 @@ public class Start {
                     break;
                 }
                 case "4":{
-
+                    clientM.depositMoney(); 
+                    break;
                 }
                 case "5":{
-
+                    Scanner scannerPassword = new Scanner(System.in);
+                    System.out.println("Please, provide new password: ");
+                    String scannPass = scannerPassword.nextLine();
+                    clientM.setPassword(scannPass);
+                    break;
                 }
                 case "6":{
+                    FileHandling.updateData(clientM);
                     FileHandling.clearConsole();
                     System.exit(0);
                 }
