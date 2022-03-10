@@ -1,0 +1,3 @@
+E021;0987654321;ana;ana;123432112;manager;default;default;0
+E021;0987;mat;pat;1234321541;Accountant;default;default;0
+E021;CEO123;mar;iusz;543210987;CEO;default;default;0
