@@ -5,6 +5,10 @@ public class Bank {
     private String postalCode;
     private int size;
 
+    public Bank(){
+        
+    }
+
     public Bank(String _place, String _postalCode, int _size){
         this.place = _place;
         this.postalCode = _postalCode;

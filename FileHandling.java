@@ -11,7 +11,7 @@ public class FileHandling {
     public static void Reader(String path){
         try{
             File file = new File(path);
-            System.out.println("Does file exits? FileHandling.Reader() -> " + file.exists());
+            //System.out.println("Does file exits? FileHandling.Reader() -> " + file.exists());
             Scanner scanner = new Scanner(file);
             while(scanner.hasNext()) {
                 System.out.println(scanner.nextLine());
@@ -105,7 +105,7 @@ public class FileHandling {
                 String line = scannerMain.nextLine();
                 String[] splitedLine = line.split(";");
                 if(!(splitedLine[0].equals(clientID))){
-                    System.out.println("this is the line -> " + line);
+                    //System.out.println("this is the line -> " + line);
                     writerTmp.write(line + "\n");
                 }else{
                     writerTmp.write(Clients.toFile(client) + "\n");
@@ -118,7 +118,7 @@ public class FileHandling {
             Scanner scannerTmp = new Scanner(tmp);
             while(scannerTmp.hasNext()){
                 String line = scannerTmp.next();
-                System.out.println("SCANNER " + line);
+                //System.out.println("SCANNER " + line);
                 writerMain.write(line+ "\n");
             }
             writerMain.close();
